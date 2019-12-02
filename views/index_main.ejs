@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=content-width, initial-scale=1">
+    <link rel="stylesheet" href="/CSS/style_main.css">
+    <link rel="icon" href="http://www.pngall.com/wp-content/uploads/2016/09/Clef-Note.png">
+    <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
+    <title></title>
+  </head>
+  <body>
+    <div id="sidebar">
+      <ul>
+        <li><a href="/">Search lyrics</a></li>
+        <li><a href="/library">View my lyrics</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </div>
+    <div id="container">
+      <form name="searchLyrics" action="/" method="get">
+        <div id="searchDiv">
+          <input type="text" name="search" id="search" placeholder="Type singer or song name">
+        </div>
+      </form>
+      <div id="songList">
+        <% for (let key of Object.keys(songList)) { %>
+        <div id="songItem">
+          <a href="/song/<%= songList[key].id %>">
+            <p id="songName"><%= songList[key].songName %></p>
+            <p id="singer"><%= songList[key].singer %></p>
+          </a>
+          <input type="button" id="addSong" value="Add to library">
+        </div>
+        <% }; %>
+      </div>
+    </div>
+  </body>
+</html>

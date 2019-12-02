@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=content-width, initial-scale=1">
+    <link rel="stylesheet" href="/CSS/style_song_page.css">
+    <link rel="icon" href="http://www.pngall.com/wp-content/uploads/2016/09/Clef-Note.png">
+    <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
+    <title></title>
+  </head>
+  <body>
+    <div id="sidebar">
+      <ul>
+        <li><a href="/">Search lyrics</a></li>
+        <li><a href="/library">View my lyrics</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
+    </div>
+    <div id="container">
+      <div id="songText">
+        <input type="button" id="addSong"value="Add to library">
+        <img src="<%= mediaData.image %>" alt="cover">
+        <h1 id="songName"><%= mediaData.songName %></h1>
+        <h2 id="singer"><%= mediaData.singer %></h2>
+        <p id="album"><%= mediaData.album %></p>
+<pre>
+<%= mediaData.lyrics %>
+</pre>
+      </div>
+    </div>
+  </body>
+</html>
