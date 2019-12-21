@@ -1,4 +1,4 @@
-module.exports = function createUser(email, username, password) {
+module.exports = function get_song_list(username) {
   const mongoose = require('mongoose');
   const user_schema = require('./user_schema.js');
 
