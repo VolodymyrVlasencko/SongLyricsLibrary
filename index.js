@@ -162,11 +162,11 @@ const genius = new api(process.env.GENIUS_ACCESS_TOKEN);
 // });
 
 const http = require('http').createServer(app)
-const io = require('socket.io').listen(http);
+const io = require('socket.io')(server);
 // const server = http.createServer(app);
 // const io = require('socket.io').listen(server);
-http.listen(3001, () => {
-  console.log('http: 3001');
+// http.listen(3001, () => {
+//   console.log('http: 3001');
 
 let clickCount;
 io.on('connection', client => {
@@ -178,7 +178,7 @@ io.on('connection', client => {
       console.log(data);
     }, 3002);
 });
-});
+// });
 
 app.get('/', (req, res) => {
   let songList = [];
@@ -269,6 +269,6 @@ app.get('/about', (req, res) => {
   res.render('index_about')
 });
 
-app.listen((process.env.PORT || 3000), function(){
+const server = app.listen((process.env.PORT || 3000), function(){
   console.log('Express:3000');
 });
