@@ -176,7 +176,7 @@ const io = require('socket.io')(server);
 
 io.on('connection', client => {
   console.log('connected');
-  client.emit('buttonUpdate', clickCount);
+  client.emit('buttonUpdate');
     client.on('clicked', data => {
       console.log('hotjabi rabotaet');
       console.log(clickCount);
