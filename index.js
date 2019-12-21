@@ -26,7 +26,7 @@ const app = express();
 
 app.use(express.json());
 
-//UNLOCK WHILE HOSTING ON HEROKU!!! app.use(express.static(path.join(__dirname)));
+app.use(express.static(path.join(__dirname)));
 app.use(express.static('public'));
 
 app.use('/', express.static(__dirname + '/scripts'));

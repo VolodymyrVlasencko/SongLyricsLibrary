@@ -1,0 +1,118 @@
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  margin: 0;
+  background: #f9f5ef;
+  font-family: 'Alatsi', sans-serif; }
+
+#signout {
+  outline: none;
+  position: relative;
+  float: right;
+  right: 20px;
+  top: 10px;
+  font-size: 1em;
+  color: #6c8a9b;
+  text-decoration: none; }
+  #signout:link {
+    color: #6c8a9b; }
+  #signout:visited {
+    color: #6c8a9b; }
+  #signout:hover {
+    color: rgba(0, 0, 0, 0.5); }
+  #signout:active {
+    color: #6c8a9b; }
+
+#sidebar {
+  display: block;
+  position: absolute;
+  width: 230px;
+  height: 300px;
+  float: left;
+  top: 160px;
+  padding-top: 130px;
+  font-size: 1.6em;
+  color: #6c8a9b;
+  background: #e6e6e4; }
+  #sidebar ul {
+    list-style: square;
+    margin-left: -10px;
+    background: #e6e6e4; }
+    #sidebar ul li {
+      background: #e6e6e4; }
+      #sidebar ul li a {
+        outline: none;
+        background: #e6e6e4;
+        text-decoration: none; }
+      #sidebar ul li a:link {
+        color: #6c8a9b; }
+      #sidebar ul li a:visited {
+        color: #6c8a9b; }
+      #sidebar ul li a:hover {
+        color: rgba(0, 0, 0, 0.5); }
+      #sidebar ul li a:active {
+        color: #6c8a9b; }
+
+#container {
+  position: relative;
+  left: 270px;
+  top: 160px;
+  width: 1000px; }
+
+#libItem {
+  overflow: hidden;
+  display: inline-block;
+  width: 270px;
+  height: 150px;
+  background: #e6e6e4;
+  color: #6c8a9b;
+  margin-right: 40px;
+  margin-bottom: 38px;
+  cursor: pointer; }
+  #libItem img {
+    width: 80px;
+    height: 80px;
+    position: relative;
+    left: 166px;
+    top: -65px; }
+  #libItem #songName {
+    padding-top: 35px;
+    padding-left: 10px;
+    font-size: 1.6em;
+    background: #e6e6e4; }
+  #libItem #singer {
+    padding-left: 10px;
+    font-size: 1.3em;
+    background: #e6e6e4; }
+  #libItem .delete {
+    position: relative;
+    left: 235px;
+    top: 7px;
+    opacity: 0.6;
+    }
+    .delete:hover {
+    opacity: 1;
+    }
+    .delete:before, .delete:after {
+    position: absolute;
+    left: 15px;
+    content: ' ';
+    height: 17px;
+    width: 3px;
+    background-color: #333;
+    }
+    .delete:before {
+    transform: rotate(45deg);
+    }
+    .delete:after {
+    transform: rotate(-45deg);
+    }
+
+#libItem:hover {
+  background: #DDDDDB; }
+  #libItem:hover #songName {
+    background: #DDDDDB; }
+  #libItem:hover #singer {
+    background: #DDDDDB; }
+  #libItem:hover #album {
+    background: #DDDDDB; }
