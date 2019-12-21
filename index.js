@@ -264,6 +264,12 @@ app.post('/login', passport.authenticate('login', {
   failureFlash: true
 }));
 
+app.post('/signup', passport.authenticate('signup', {
+  successRedirect: '/library',
+  failureRedirect: '/login',
+  failureFlash: true
+}));
+
 app.get('/signout', deleteSession, (req, res) => {
   res.redirect('/login');
 });
