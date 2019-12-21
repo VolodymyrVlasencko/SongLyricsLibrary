@@ -179,6 +179,7 @@ io.on('connection', client => {
   client.emit('buttonUpdate', clickCount);
     client.on('clicked', data => {
       console.log('hotjabi rabotaet');
+      console.log(clickCount);
     }, 3002);
 });
 // });
