@@ -173,14 +173,12 @@ const io = require('socket.io')(server);
 // http.listen(3001, () => {
 //   console.log('http: 3001');
 
-let clickCount;
+
 io.on('connection', client => {
   console.log('connected');
   client.emit('buttonUpdate', clickCount);
     client.on('clicked', data => {
-    	  clickCount++;
-		  //send a message to ALL connected clients
-      console.log(data);
+      console.log('hotjabi rabotaet');
     }, 3002);
 });
 // });

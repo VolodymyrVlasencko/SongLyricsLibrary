@@ -1,4 +1,4 @@
-module.exports = function get_song_list(username) {
+module.exports = function get_song_list(user) {
   const mongoose = require('mongoose');
   const user_schema = require('./user_schema.js');
 
