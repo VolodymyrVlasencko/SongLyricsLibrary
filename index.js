@@ -24,6 +24,11 @@ const user_schema = require('./features/database/user_schema.js');
 
 const app = express();
 
+const server = app.listen((process.env.PORT || 3000), function(){
+  console.log('Express:3000');
+});
+
+
 app.use(express.json());
 
 app.use(express.static(path.join(__dirname)));
@@ -267,8 +272,4 @@ app.get('/signout', deleteSession, (req, res) => {
 
 app.get('/about', (req, res) => {
   res.render('index_about')
-});
-
-const server = app.listen((process.env.PORT || 3000), function(){
-  console.log('Express:3000');
 });
