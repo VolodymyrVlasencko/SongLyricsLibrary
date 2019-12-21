@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/CSS/style_signup.css">
     <link rel="icon" href="http://www.pngall.com/wp-content/uploads/2016/09/Clef-Note.png">
     <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
-    <title></title>
+    <title>GeniusLyrics | Login</title>
   </head>
   <body>
     <div id="sidebar">
@@ -17,12 +17,19 @@
       </ul>
     </div>
     <div id="container">
-      <form name="postNewUser" action="/signup" method="post">
+      <form name="signupUser" action="/signup" method="post">
         <h1>Join genius lyrics viewer</h1>
-        <input type="text" name="mail" placeholder="Your e-mail">
-        <input type="text" name="nickname" placeholder="Your nickname">
+        <!--<input type="text" name="email" placeholder="Your e-mail">-->
+        <input type="text" name="username" placeholder="Your username">
         <input type="text" name="password" placeholder="Your password">
-        <input type="button" id="signUp" value="Sign Up">
+        <input type="button" id="signUp" value="Sign Up" onclick="this.form.submit()">
+      </form>
+      <form name="loginUser" action="/login" method="post">
+        <h1>Already have an account?</h1>
+        <!--<input type="text" name="email" placeholder="Your e-mail">-->
+        <input type="text" name="username" placeholder="Your username">
+        <input type="text" name="password" placeholder="Your password">
+        <input type="button" id="signUp" value="Log In" onclick="this.form.submit()">
       </form>
     </div>
   </body>

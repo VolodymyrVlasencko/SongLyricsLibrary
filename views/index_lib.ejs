@@ -6,10 +6,22 @@
     <link rel="stylesheet" href="/CSS/style_lib.css">
     <link rel="icon" href="http://www.pngall.com/wp-content/uploads/2016/09/Clef-Note.png">
     <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
-    <title></title>
+    <title>GeniusLyrics | Library</title>
+    <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
-    <a href="/library" id="logout">Log Out</a>
+    <script>
+    var socket = io.connect('https://localhost:3001', { secure: true });
+
+    function deleteItem(){
+      socket.emit('clicked');
+
+      socket.on('clicked', data => {
+        console.log('worked');
+      });
+    }
+    </script>
+    <a href="/signout" id="signout">Sign Out</a>
     <div id="sidebar">
       <ul>
         <li><a href="/">Search lyrics</a></li>
@@ -19,39 +31,39 @@
     </div>
     <div id="container">
       <div id="libItem">
+        <span onclick="deleteItem()" class="delete"></span>
         <p id="songName">Song name</p>
         <p id="singer">Singer</p>
-        <p id="album">Album</p>
         <img src="https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2F5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg" alt="cover">
       </div>
       <div id="libItem">
+        <span onclick="deleteItem()" class="delete"></span>
         <p id="songName">Song name</p>
         <p id="singer">Singer</p>
-        <p id="album">Album</p>
         <img src="https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2F5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg" alt="cover">
       </div>
       <div id="libItem">
+        <span onclick="deleteItem()" class="delete"></span>
         <p id="songName">Song name</p>
         <p id="singer">Singer</p>
-        <p id="album">Album</p>
         <img src="https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2F5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg" alt="cover">
       </div>
       <div id="libItem">
+        <span onclick="deleteItem()" class="delete"></span>
         <p id="songName">Song name</p>
         <p id="singer">Singer</p>
-        <p id="album">Album</p>
         <img src="https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2F5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg" alt="cover">
       </div>
       <div id="libItem">
+        <span onclick="deleteItem()" class="delete"></span>
         <p id="songName">Song name</p>
         <p id="singer">Singer</p>
-        <p id="album">Album</p>
         <img src="https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2F5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg" alt="cover">
       </div>
       <div id="libItem">
+        <span onclick="deleteItem()" class="delete"></span>
         <p id="songName">Song name</p>
         <p id="singer">Singer</p>
-        <p id="album">Album</p>
         <img src="https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2F5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg" alt="cover">
       </div>
     </div>
