@@ -165,7 +165,7 @@ const http = require('http').createServer(app)
 const io = require('socket.io').listen(http);
 // const server = http.createServer(app);
 // const io = require('socket.io').listen(server);
-http.listen(3001, () => {
+http.listen(process.env.PORT || 3001, () => {
   console.log('http: 3001');
 
 let clickCount;
@@ -176,7 +176,7 @@ io.on('connection', client => {
     	  clickCount++;
 		  //send a message to ALL connected clients
       console.log(data);
-    }, 3000);
+    }, process.env.PORT || 3002);
 });
 });
 
