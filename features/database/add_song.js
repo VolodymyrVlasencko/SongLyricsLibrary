@@ -12,7 +12,7 @@ module.exports = function addSong(userId, myLyrics) {
     if (err) throw err;
     if (res) {
       lyrics = new Set(res.myLyrics);
-      myLyrics = Array.from(myLyrics.values());
+      myLyrics = Array.from(myLyrics);
     }
   });
 }
