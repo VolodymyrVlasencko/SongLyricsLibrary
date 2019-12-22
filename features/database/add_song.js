@@ -13,6 +13,10 @@ module.exports = function addSong(userId, myLyrics) {
     if (res) {
       lyrics = new Set(res.myLyrics);
       myLyrics = Array.from(myLyrics);
+      Listener.findByIdAndUpdate(userId, { myLyrics },
+      { new: true }, (err, res) => {
+        if (err) throw err;
+      });
     }
   });
 }
