@@ -209,13 +209,15 @@ app.get('/', (req, res) => {
 app.get('/song/:id', (req, res) => {
 
   let mediaData = {
-    songId: req.params.id,
+    songId: String(),
     songName: String(),
     singer: String(),
     album: String(),
     image: String(),
     lyrics: String()
   }
+
+  mediaData.songId = req.params.id;
 
   genius.song(req.params.id).then(function(response) {
     mediaData = {
@@ -252,13 +254,13 @@ app.post('/song/:id', (req, res) => {
   }
 });
 
-app.post('/song', (req, res) => {
-  if (!req.session.passport) {
-    res.redirect('/login');
-  } else {
-    res.redirect('/library');
-  }
-});
+// app.post('/song', (req, res) => {
+//   if (!req.session.passport) {
+//     res.redirect('/login');
+//   } else {
+//     res.redirect('/library');
+//   }
+// });
 
 app.get('/library', isAuthenticated, (req, res) => {
   res.render('index_lib', { user: req.user })
