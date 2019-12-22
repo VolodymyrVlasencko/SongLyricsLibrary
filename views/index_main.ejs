@@ -9,6 +9,9 @@
     <title>GeniusLyrics | Main</title>
   </head>
   <body>
+    <script type="text/javascript">
+      var socket = io.connect();
+    </script>
     <div id="sidebar">
       <ul>
         <li><a href="/">Search lyrics</a></li>
@@ -34,15 +37,15 @@
           <!-- </form> -->
         </div>
         <script type="text/javascript">
-          var socket = io.connect();
 
-          function addLyrics(){
+          function addLyrics() {
             socket.emit('addSong');
           }
 
           socket.on('addSong', data => {
             var songId = <%= songList[key].id %>
           });
+
         </script>
         <% }; %>
       </div>
