@@ -11,14 +11,16 @@
   </head>
   <body>
     <script>
-    var socket = io.connect();
+      var socket = io.connect();
 
-    function deleteItem(){
-      socket.emit('clicked');
-    }
+      function deleteItem(){
+        socket.emit('clicked');
+      }
 
       socket.on('clicked', data => {
-        console.log('worked');
+        var libItem = document.getElementById('libItem');
+        libItem.parentNode.removeChild(libItem);
+        return false;
       });
     </script>
     <a href="/signout" id="signout">Sign Out</a>

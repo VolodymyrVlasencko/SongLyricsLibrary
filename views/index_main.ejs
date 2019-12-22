@@ -29,7 +29,9 @@
             <p id="songName"><%= songList[key].songName %></p>
             <p id="singer"><%= songList[key].singer %></p>
           </a>
-          <input type="button" id="addSong" value="Add to library">
+          <form action="/song/<%= songList[key].id %>" method="post">
+            <input type="button" id="addSong" value="Add to library">
+          </form>
         </div>
         <% }; %>
       </div>

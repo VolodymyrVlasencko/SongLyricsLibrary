@@ -16,9 +16,10 @@ const flash = require('connect-flash');
 const bcrypt = require('bcryptjs');
 require('dotenv').config();
 
-// const createUser = require('./features/database/create_user.js');
-// const getUsernameCookie = require('./features/database/get_username_cookie.js');
 const user_schema = require('./features/database/user_schema.js');
+const getSongList = require('./features/database/get_song_list.js');
+const addSong = require('./features/database/add_song.js');
+const deleteSong = require('./features/database/delete_song.js');
 // const port = 5000;
 // const server = new WebSocket.Server({ port });
 
@@ -208,6 +209,7 @@ app.get('/', (req, res) => {
 app.get('/song/:id', (req, res) => {
 
   let mediaData = {
+    songId: req.params.id,
     songName: String(),
     singer: String(),
     album: String(),
@@ -239,6 +241,15 @@ app.get('/song/:id', (req, res) => {
     }
     getFull();
   });
+});
+
+app.post('/song/:id', (req, res) => {
+  if (!req.session.passport) {
+    res.redirect('/login');
+  } else if (res.session.passport.user) {
+    addSong(req.session.passport.user, req.params.id);
+    res.end();
+  }
 });
 
 app.post('/song', (req, res) => {

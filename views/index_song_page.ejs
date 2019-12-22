@@ -18,13 +18,13 @@
     </div>
     <div id="container">
         <div id="songText">
-          <form  name="addLyrics" action="/song" method="post">
-          <input type="button" id="addSong"value="Add to library" onclick="this.form.submit()">
+          <form  name="addLyrics" action="/song/<%= mediaData.songId %>" method="post">
+            <input type="button" id="addSong" value="Add to library" onclick="this.form.submit()">
           </form>
           <img src="<%= mediaData.image %>" alt="cover">
-          <h1 id="songName"><%= mediaData.songName %></h1>
-          <h2 id="singer"><%= mediaData.singer %></h2>
-          <p id="album"><%= mediaData.album %></p>
+          <h1 name="songName" id="songName"><%= mediaData.songName %></h1>
+          <h2 name="singer" id="singer"><%= mediaData.singer %></h2>
+          <p name="album" id="album"><%= mediaData.album %></p>
 <pre>
 <%= mediaData.lyrics %>
 </pre>
