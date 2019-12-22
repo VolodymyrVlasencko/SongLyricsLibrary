@@ -14,7 +14,7 @@
       var socket = io.connect();
 
       function addLyrics(songId) {
-        socket.emit('added');
+        socket.emit('added', songId);
       }
 
       socket.on('addSong', data => {
