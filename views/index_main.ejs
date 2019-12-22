@@ -42,11 +42,19 @@
             <p id="singer"><%= songList[key].singer %></p>
           </a>
           <!-- <form action="/song/<%= songList[key].id %>" method="post"> -->
-            <input type="button" id="addSong" value="Add to library" onclick="addLyrics(<%= songList[key].id %>)">
+            <input type="button" id="addSong" value="Add to library" onclick="addLyrics()">
           <!-- </form> -->
         </div>
-        <script type="text/javascript">
+        <script>
 
+          function addLyrics() {
+            var songId = <%= songList[key].id %>
+            socket.emit('added', songId);
+          }
+
+          socket.on('addSong', data => {
+            console.log(data);
+          });
         </script>
         <% }; %>
       </div>

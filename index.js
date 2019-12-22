@@ -189,14 +189,14 @@ app.get('/', (req, res) => {
         res.redirect('/login');
         state = 'Non loged in';
       } else if (req.session.passport.user) {
-        addSong(req.session.passport.user, songId);
+        addSong(req.session.passport.user, data);
         state = 'Song lyrics were added';
       }
       console.log(state);
       client.emit('addSong', state);
     }, 3002);
   });
-  
+
   let songList = [];
 
   function createSongList (search) {
