@@ -14,7 +14,7 @@
       var socket = io.connect();
 
       function addLyrics() {
-        socket.emit('clicked');
+        socket.emit('added');
       }
 
       socket.on('addSong', data => {
