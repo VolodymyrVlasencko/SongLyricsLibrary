@@ -170,6 +170,16 @@ const genius = new api(process.env.GENIUS_ACCESS_TOKEN);
 const http = require('http').createServer(app)
 const io = require('socket.io')(server);
 
+io.on('connection', client => {
+  console.log('connected');
+  client.on('addSong', data => {
+    if (!req.session.passport) {
+      res.redirect('/login');
+    } else if (req.session.passport.user) {
+      addSong(req.session.passport.user, songId);
+    }
+  }, 3002);
+});
 // io.on('connection', client => {
 //   console.log('connected');
 //   client.emit('buttonUpdate');
@@ -179,18 +189,6 @@ const io = require('socket.io')(server);
 // });
 
 app.get('/', (req, res) => {
-  const io = require('socket.io')(server);
-  io.on('connection', client => {
-    console.log('connected');
-    client.on('addSong', data => {
-      if (!req.session.passport) {
-        res.redirect('/login');
-      } else if (req.session.passport.user) {
-        addSong(req.session.passport.user, req.params.id);
-      }
-    }, 3002);
-  });
-
   let songList = [];
 
   function createSongList (search) {
