@@ -171,14 +171,17 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(server);
 
 io.on('connection', client => {
-  client.on('added', data => {
+  let state;
+  client.on('clicked', data => {
     if (!req.session.passport) {
       res.redirect('/login');
+      state = 'Non loged in';
     } else if (req.session.passport.user) {
       addSong(req.session.passport.user, songId);
-      let songWasAdded = 'Song lyrics were added'
-      io.emit('addSong', songWasAdded);
+      state = 'Song lyrics were added';
     }
+    console.log(state);
+    io.emit('addSong', state);
   }, 3002);
 });
 // io.on('connection', client => {

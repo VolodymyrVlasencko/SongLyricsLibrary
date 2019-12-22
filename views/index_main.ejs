@@ -9,11 +9,11 @@
     <title>GeniusLyrics | Main</title>
   </head>
   <body>
-    <script type="text/javascript">
+    <script>
       var socket = io.connect();
 
       function addLyrics() {
-        socket.emit('added');
+        socket.emit('clicked');
       }
 
       socket.on('addSong', data => {
