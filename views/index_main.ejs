@@ -53,7 +53,9 @@
           }
 
           socket.on('addSong', data => {
-            console.log(data);
+            if (data === 'Non loged in') {
+              location.replace("https://lyricsviewer.herokuapp.com/login");
+            }
           });
         </script>
         <% }; %>

@@ -7,8 +7,12 @@ module.exports = function addSong(userId, myLyrics) {
   mongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true });
 
   Listener.findByIdAndUpdate(userId,
-    { $push: { myLyrics } }, 
+    { $push: { myLyrics } },
     { new: true }, (err, res) => {
     if (err) throw err;
+    if (res) {
+      lyrics = new Set(res.myLyrics);
+      myLyrics = Array.from(myLyrics.values());
+    }
   });
 }

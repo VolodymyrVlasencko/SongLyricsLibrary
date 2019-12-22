@@ -7,6 +7,7 @@
     <link rel="icon" href="http://www.pngall.com/wp-content/uploads/2016/09/Clef-Note.png">
     <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
     <title>GeniusLyrics | Lyrics</title>
+    <script src="/socket.io/socket.io.js"></script>
   </head>
   <body>
     <div id="sidebar">
@@ -28,6 +29,18 @@
 <pre>
 <%= mediaData.lyrics %>
 </pre>
+          <script>
+
+            function addLyrics() {
+              socket.emit('added');
+            }
+
+            socket.on('addSong', data => {
+              if (data === 'Non loged in') {
+                location.replace("https://lyricsviewer.herokuapp.com/login");
+              }
+            });
+          </script>
         </div>
     </div>
   </body>

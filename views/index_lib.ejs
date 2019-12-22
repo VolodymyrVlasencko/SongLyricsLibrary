@@ -14,7 +14,7 @@
       var socket = io.connect();
 
       function deleteItem(){
-        socket.emit('clicked');
+        socket.emit('deleted');
       }
 
       socket.on('clicked', data => {

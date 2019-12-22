@@ -180,13 +180,11 @@ const io = require('socket.io')(server);
 // });
 
 app.get('/', (req, res) => {
+
   io.on('connection', client => {
     let state;
-    console.log('connected');
-
     client.on('added', data => {
       if (!req.session.passport) {
-        res.redirect('/login');
         state = 'Non loged in';
       } else if (req.session.passport.user) {
         addSong(req.session.passport.user, data);
@@ -214,11 +212,23 @@ app.get('/', (req, res) => {
     });
   }
   createSongList(req.query.search);
-
-  //const ws = new WebSocket('ws://localhost:5000');
 });
 
 app.get('/song/:id', (req, res) => {
+
+  io.on('connection', client => {
+    let state;
+    client.on('added', data => {
+      if (!req.session.passport) {
+        state = 'Non loged in';
+      } else if (req.session.passport.user) {
+        addSong(req.session.passport.user, req.params.id);
+        state = 'Song lyrics were added';
+      }
+      console.log(state);
+      client.emit('addSong', state);
+    }, 3002);
+  });
 
   let mediaData = {
     songId: String(),
@@ -275,7 +285,9 @@ app.post('/song/:id', (req, res) => {
 // });
 
 app.get('/library', isAuthenticated, (req, res) => {
-  res.render('index_lib', { user: req.user })
+  getSongList(req.session.passport.user);
+  console.log(songList);
+  res.render('index_lib', {  })
 });
 
 
