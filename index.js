@@ -172,6 +172,8 @@ const io = require('socket.io')(server);
 
 io.on('connection', client => {
   let state;
+  console.log('connected');
+
   client.on('clicked', data => {
     if (!req.session.passport) {
       res.redirect('/login');
@@ -181,7 +183,7 @@ io.on('connection', client => {
       state = 'Song lyrics were added';
     }
     console.log(state);
-    io.emit('addSong', state);
+    client.emit('addSong', state);
   }, 3002);
 });
 // io.on('connection', client => {
