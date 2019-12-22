@@ -171,13 +171,13 @@ const http = require('http').createServer(app)
 const io = require('socket.io')(server);
 
 io.on('connection', client => {
-  console.log('connected');
-  client.on('addSong', data => {
+  client.on('added', data => {
     if (!req.session.passport) {
       res.redirect('/login');
     } else if (req.session.passport.user) {
       addSong(req.session.passport.user, songId);
     }
+    io.emit('addSong');
   }, 3002);
 });
 // io.on('connection', client => {

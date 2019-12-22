@@ -39,12 +39,10 @@
         <script type="text/javascript">
 
           function addLyrics() {
-            socket.emit('addSong');
+            socket.emit('added');
           }
 
-          socket.on('addSong', data => {
-            var songId = <%= songList[key].id %>
-          });
+          socket.on('addSong');
 
         </script>
         <% }; %>
