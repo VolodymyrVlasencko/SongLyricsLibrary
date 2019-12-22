@@ -11,6 +11,14 @@
   <body>
     <script type="text/javascript">
       var socket = io.connect();
+
+      function addLyrics() {
+        socket.emit('added');
+      }
+
+      socket.on('addSong', data => {
+        console.log(data);
+      });
     </script>
     <div id="sidebar">
       <ul>
@@ -38,13 +46,6 @@
         </div>
         <script type="text/javascript">
 
-          function addLyrics() {
-            socket.emit('added');
-          }
-
-          socket.on('addSong', data => {
-            console.log(data);
-          });
         </script>
         <% }; %>
       </div>
