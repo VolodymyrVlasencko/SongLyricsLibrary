@@ -178,13 +178,23 @@ const io = require('socket.io')(server);
 io.on('connection', client => {
   console.log('connected');
   client.emit('buttonUpdate');
-    client.on('clicked', data => {
-      console.log('hotjabi rabotaet');
-    }, 3002);
+  client.on('clicked', data => {
+  }, 3002);
 });
 // });
 
 app.get('/', (req, res) => {
+  io.on('connection', client => {
+    console.log('connected');
+    client.on('addSong', data => {
+      if (!req.session.passport) {
+        res.redirect('/login');
+      } else if (req.session.passport.user) {
+        addSong(req.session.passport.user, req.params.id);
+      }
+    }, 3002);
+  });
+
   let songList = [];
 
   function createSongList (search) {
@@ -250,7 +260,7 @@ app.post('/song/:id', (req, res) => {
     res.redirect('/login');
   } else if (req.session.passport.user) {
     addSong(req.session.passport.user, req.params.id);
-    res.end();
+    res.redirect('/');
   }
 });
 
