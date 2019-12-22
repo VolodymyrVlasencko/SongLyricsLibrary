@@ -12,8 +12,8 @@ module.exports = function addSong(userId, myLyrics) {
     if (err) throw err;
     if (res) {
       lyrics = new Set(res.myLyrics);
-      myLyrics = Array.from(myLyrics);
-      Listener.findByIdAndUpdate(userId, { myLyrics },
+      //myLyrics = Array.from(myLyrics);
+      Listener.findByIdAndUpdate(userId, { myLyrics: lyrics },
       { new: true }, (err, res) => {
         if (err) throw err;
       });
