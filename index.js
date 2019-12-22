@@ -176,8 +176,9 @@ io.on('connection', client => {
       res.redirect('/login');
     } else if (req.session.passport.user) {
       addSong(req.session.passport.user, songId);
+      let songWasAdded = 'Song lyrics were added'
+      io.emit('addSong', songWasAdded);
     }
-    io.emit('addSong');
   }, 3002);
 });
 // io.on('connection', client => {

@@ -42,8 +42,9 @@
             socket.emit('added');
           }
 
-          socket.on('addSong');
-
+          socket.on('addSong', data => {
+            console.log(data);
+          });
         </script>
         <% }; %>
       </div>
