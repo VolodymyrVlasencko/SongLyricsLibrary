@@ -41,7 +41,6 @@
         <script>
 
         function addLyrics(songId) {
-          // var songId = <%= songList[key].id %>
           socket.emit('added', songId);
         }
 
