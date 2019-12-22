@@ -169,18 +169,13 @@ const genius = new api(process.env.GENIUS_ACCESS_TOKEN);
 
 const http = require('http').createServer(app)
 const io = require('socket.io')(server);
-// const server = http.createServer(app);
-// const io = require('socket.io').listen(server);
-// http.listen(3001, () => {
-//   console.log('http: 3001');
 
-
-io.on('connection', client => {
-  console.log('connected');
-  client.emit('buttonUpdate');
-  client.on('clicked', data => {
-  }, 3002);
-});
+// io.on('connection', client => {
+//   console.log('connected');
+//   client.emit('buttonUpdate');
+//   client.on('clicked', data => {
+//   }, 3002);
+// });
 // });
 
 app.get('/', (req, res) => {

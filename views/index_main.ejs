@@ -30,21 +30,22 @@
             <p id="singer"><%= songList[key].singer %></p>
           </a>
           <!-- <form action="/song/<%= songList[key].id %>" method="post"> -->
-            <input type="button" id="addSong" value="Add to library" onclick="addSong()">
+            <input type="button" id="addSong" value="Add to library" onclick="addLyrics()">
           <!-- </form> -->
         </div>
+        <script type="text/javascript">
+          var socket = io.connect();
+
+          function addLyrics(){
+            socket.emit('addSong');
+          }
+
+          socket.on('addSong', data => {
+            var songId = <%= songList[key].id %>
+          });
+        </script>
         <% }; %>
       </div>
     </div>
-    <script type="text/javascript">
-    var socket = io.connect();
-
-    function addSong(){
-      socket.emit('addSong');
-    }
-
-    socket.on('addSong', data => { 
-    });
-    </script>
   </body>
 </html>
