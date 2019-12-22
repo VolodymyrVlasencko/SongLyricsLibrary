@@ -13,7 +13,7 @@
     <script>
       var socket = io.connect();
 
-      function addLyrics() {
+      function addLyrics(songId) {
         socket.emit('added');
       }
 
@@ -42,7 +42,7 @@
             <p id="singer"><%= songList[key].singer %></p>
           </a>
           <!-- <form action="/song/<%= songList[key].id %>" method="post"> -->
-            <input type="button" id="addSong" value="Add to library" onclick="addLyrics()">
+            <input type="button" id="addSong" value="Add to library" onclick="addLyrics(<%= songList[key].id %>)">
           <!-- </form> -->
         </div>
         <script type="text/javascript">
