@@ -15,11 +15,11 @@
 
     function deleteItem(){
       socket.emit('clicked');
+    }
 
       socket.on('clicked', data => {
         console.log('worked');
       });
-    }
     </script>
     <a href="/signout" id="signout">Sign Out</a>
     <div id="sidebar">
