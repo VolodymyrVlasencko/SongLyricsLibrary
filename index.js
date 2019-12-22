@@ -179,6 +179,7 @@ const io = require('socket.io')(server);
 // });
 
 app.get('/', (req, res) => {
+  const io = require('socket.io')(server);
   io.on('connection', client => {
     console.log('connected');
     client.on('addSong', data => {
