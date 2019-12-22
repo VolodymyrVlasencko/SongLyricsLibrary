@@ -34,23 +34,23 @@
             <p id="singer"><%= songList[key].singer %></p>
           </a>
           <!-- <form action="/song/<%= songList[key].id %>" method="post"> -->
-            <input type="button" id="addSong" value="Add to library" onclick="addLyrics()">
+            <input type="button" id="addSong" value="Add to library" onclick="addLyrics(<%= songList[key].id)">
           <!-- </form> -->
         </div>
+        <% }; %>
         <script>
 
-          function addLyrics() {
-            var songId = <%= songList[key].id %>
-            socket.emit('added', songId);
-          }
+        function addLyrics(songId) {
+          // var songId = <%= songList[key].id %>
+          socket.emit('added', songId);
+        }
 
-          socket.on('addSong', data => {
-            if (data === 'Non loged in') {
-              location.replace("https://lyricsviewer.herokuapp.com/login");
-            }
-          });
+        socket.on('addSong', data => {
+          if (data === 'Non loged in') {
+            location.replace("https://lyricsviewer.herokuapp.com/login");
+          }
+        });
         </script>
-        <% }; %>
       </div>
     </div>
   </body>
