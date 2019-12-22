@@ -248,7 +248,7 @@ app.get('/song/:id', (req, res) => {
 app.post('/song/:id', (req, res) => {
   if (!req.session.passport) {
     res.redirect('/login');
-  } else if (res.session.passport.user) {
+  } else if (req.session.passport.user) {
     addSong(req.session.passport.user, req.params.id);
     res.end();
   }
