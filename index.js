@@ -286,20 +286,21 @@ app.get('/library', isAuthenticated, (req, res) => {
   let libItems = [];
 
   getSongList(req.session.passport.user);
-
-  songList.forEach(item => {
-    genius.song(item).then(function(response) {
-      let libItemToPush = {
-        songName: response.song.title,
-        singer: response.song.primary_artist.name,
-        image: response.song.song_art_image_url,
-        id: item
-      }
-      return libItemToPush;
+  function getLibItemList (libItems, songList) {
+    songList.forEach(item => {
+      genius.song(item).then(function(response) {
+        let libItemToPush = {
+          songName: response.song.title,
+          singer: response.song.primary_artist.name,
+          image: response.song.song_art_image_url,
+          id: item
+        }
+        libItems.push(libItemToPush);
+        return libItems
+      });
     });
-    libItems.push(libItemToPush);
-    return libItems;
-  });
+  }
+  getLibItemList();
   res.render('index_lib', { libItems: libItems });
 });
 
