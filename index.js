@@ -288,12 +288,12 @@ app.get('/library', isAuthenticated, (req, res) => {
 
   getSongList(req.session.passport.user);
   for (let value of Object.values(songList)) {
-    genius.song(item).then(function(response) {
+    genius.song(value).then(function(response) {
       let libItemToPush = {
         songName: response.song.title,
         singer: response.song.primary_artist.name,
         image: response.song.song_art_image_url,
-        id: item
+        id: value
       }
       libItems.push(libItemToPush);
       return libItems
