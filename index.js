@@ -286,9 +286,9 @@ app.get('/song/:id', (req, res) => {
 app.get('/library', isAuthenticated, (req, res) => {
 
   getSongList(req.session.passport.user);
+  console.log(songList);
 
-
-  setTimeout(() => {
+  setTimeout((songList) => {
   let libItems = [];
   for (let value of Object.values(songList)) {
     genius.song(value).then(function(response) {
