@@ -222,7 +222,7 @@ app.get('/song/:id', (req, res) => {
       if (!req.session.passport) {
         state = 'Non loged in';
       } else if (req.session.passport.user) {
-        addSong(req.session.passport.user, data);
+        addSong(req.session.passport.user, req.params.id);
         state = 'Song lyrics were added';
       }
       console.log(state);
