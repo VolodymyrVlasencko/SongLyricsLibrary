@@ -288,7 +288,7 @@ app.get('/library', isAuthenticated, (req, res) => {
   getSongList(req.session.passport.user);
   let libItems = [];
 
-  for (let values of Object.values(songList)) {
+  for (let value of Object.values(songList)) {
     if (value === null) continue;
     genius.song(value).then(function(response) {
       let libItemToPush = {
