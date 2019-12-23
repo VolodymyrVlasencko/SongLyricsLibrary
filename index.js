@@ -285,7 +285,7 @@ app.get('/song/:id', (req, res) => {
 
 app.get('/library', isAuthenticated, (req, res) => {
 
-  getSongList(req.session.passport.user);
+getSongList(req.session.passport.user);
 
 function getLibItems(songList) {
   let libItems = [];
@@ -304,7 +304,7 @@ function getLibItems(songList) {
     });
   }
 }
-setTimeout(getLibItems(songList), 1000);
+setTimeout(getLibItems(), 1000);
 });
 
 
