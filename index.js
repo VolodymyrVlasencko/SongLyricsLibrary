@@ -286,18 +286,7 @@ app.get('/library', isAuthenticated, (req, res) => {
   let libItems = [];
   getSongList(req.session.passport.user);
   console.log(songList);
-  // songList.forEach(item => {
-  //   genius.song(item).then(function(response) {
-  //     let libItemToPush = {
-  //       songName: response.song.title,
-  //       singer: response.song.primary_artist.name,
-  //       img: response.song.album.name,
-  //       id: item
-  //     }
-  //     libItems.push(libItemToPush)
-  //   });
-  // });
-  // console.log(libItems);
+
   res.render('index_lib'/*, { libItems: libItems }*/)
 });
 
