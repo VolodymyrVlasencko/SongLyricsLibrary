@@ -292,12 +292,12 @@ app.get('/library', isAuthenticated, (req, res) => {
       let libItemToPush = {
         songName: response.song.title,
         singer: response.song.primary_artist.name,
-        img: response.song.album.name,
+        image: response.song.song_art_image_url,
         id: item
       }
       libItems.push(libItemToPush)
-      console.log(libItems);
     });
+    console.log(libItems);
   });
   res.render('index_lib', { libItems: libItems })
 });
