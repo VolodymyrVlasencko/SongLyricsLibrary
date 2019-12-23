@@ -266,29 +266,14 @@ app.get('/song/:id', (req, res) => {
   });
 });
 
-// app.post('/song/:id', (req, res) => {
-//   if (!req.session.passport) {
-//     res.redirect('/login');
-//   } else if (req.session.passport.user) {
-//     addSong(req.session.passport.user, req.params.id);
-//     res.redirect('/');
-//   }
-// });
-//
-// // app.post('/song', (req, res) => {
-// //   if (!req.session.passport) {
-// //     res.redirect('/login');
-// //   } else {
-// //     res.redirect('/library');
-// //   }
-// // });
-
 app.get('/library', isAuthenticated, (req, res) => {
   let libItems = [];
+  let promise1 = new Promise((res, rej) => {
+    res(getSongList(req.session.passport.user))
+  });
 
-  getSongList(req.session.passport.user);
-  for (let value of Object.values(songList)) {
-    genius.song(value).then(function(response) {
+  promise1.then(waterfall(songList.map((item) => {
+    return genius.song(value).then(function(response) {
       let libItemToPush = {
         songName: response.song.title,
         singer: response.song.primary_artist.name,
@@ -296,11 +281,24 @@ app.get('/library', isAuthenticated, (req, res) => {
         id: value
       }
       libItems.push(libItemToPush);
-      return libItems
     });
-  }
+  }), (err, res) => {
+    res.render('index_lib', { libItems: libItems });
+  }));
+  // for (let value of Object.values(songList)) {
+  //   genius.song(value).then(function(response) {
+  //     let libItemToPush = {
+  //       songName: response.song.title,
+  //       singer: response.song.primary_artist.name,
+  //       image: response.song.song_art_image_url,
+  //       id: value
+  //     }
+  //     libItems.push(libItemToPush);
+  //     return libItems
+  //   });
+  // }
 
-  res.render('index_lib', { libItems: libItems });
+
 });
 
 
