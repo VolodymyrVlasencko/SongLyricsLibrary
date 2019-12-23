@@ -19,7 +19,7 @@
     </div>
     <div id="container">
         <div id="songText">
-          <input type="button" id="addSong" value="Add to library" onclick="addLyrics(<%= mediaData.songId %>)">
+          <input type="button" id="addSong" value="Add to library" onclick="addLyrics()">
           <img src="<%= mediaData.image %>" alt="cover">
           <h1 name="songName" id="songName"><%= mediaData.songName %></h1>
           <h2 name="singer" id="singer"><%= mediaData.singer %></h2>
@@ -30,8 +30,8 @@
           <script>
             var socket = io.connect();
 
-            function addLyrics(songId) {
-              socket.emit('added', songId);
+            function addLyrics() {
+              socket.emit('added');
             }
 
             socket.on('addSong', data => {
