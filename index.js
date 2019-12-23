@@ -300,8 +300,8 @@ app.get('/library', isAuthenticated, (req, res) => {
           id: value
         }
         libItems.push(libItemToPush);
-        return libItems;
         console.log(libItems+'1');
+        return libItems;
       });
       console.log(libItems+'2');
     }
