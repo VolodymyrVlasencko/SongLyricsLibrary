@@ -288,7 +288,7 @@ app.get('/library', isAuthenticated, (req, res) => {
   getSongList(req.session.passport.user);
   let libItems = [];
 
-  for (let item of songList) {
+  songList.forEach(item => {  
     if (item === null) continue;
     genius.song(item).then(function(response) {
       let libItemToPush = {
@@ -302,7 +302,7 @@ app.get('/library', isAuthenticated, (req, res) => {
         res.render('index_lib', { libItems: libItems })
       }
     });
-  }
+  });
 });
 
 
