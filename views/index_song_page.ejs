@@ -28,6 +28,7 @@
 <%= mediaData.lyrics %>
 </pre>
           <script>
+          console.log(<%= mediaData.songId %>);
             var socket = io.connect();
 
             function addLyrics() {
