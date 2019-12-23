@@ -295,8 +295,9 @@ app.get('/library', isAuthenticated, (req, res) => {
         img: response.song.album.name,
         id: item
       }
-      libItems.push(libItemToPush)
+      return libItems.push(libItemToPush)
     });
+    return libItems
   });
   console.log(libItems);
   res.render('index_lib', { libItems: libItems })
