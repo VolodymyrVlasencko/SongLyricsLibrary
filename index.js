@@ -284,13 +284,13 @@ app.get('/song/:id', (req, res) => {
 // // });
 
 app.get('/library', isAuthenticated, (req, res) => {
-  let libItems = [];
 
   let promise1 = new Promise((res, rej) => {
     res(getSongList(req.session.passport.user));
   });
 
   promise1.then(() => {
+    let libItems = [];
     for (let value of Object.values(songList)) {
       genius.song(value).then(function(response) {
         let libItemToPush = {
@@ -302,9 +302,8 @@ app.get('/library', isAuthenticated, (req, res) => {
         libItems.push(libItemToPush);
         if (libItems.length === songList.length) return libItems;
       });
-      console.log(libItems+'2');
+      console.log(libItems);
     }
-    console.log(libItems+'3');
     res.render('index_lib', { libItems: libItems })
   });
 });
