@@ -285,11 +285,12 @@ app.get('/song/:id', (req, res) => {
 
 app.get('/library', isAuthenticated, (req, res) => {
 
-  let promise1 = new Promise(resolve => {
+  let promise1 = new Promise(resolve, reject => {
     resolve(getSongList(req.session.passport.user));
   });
 
   promise1.then((result) => {
+    console.log(result);
     let libItems = [];
     for (let value of Object.values(songList)) {
       genius.song(value).then(function(response) {
