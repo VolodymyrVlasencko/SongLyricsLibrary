@@ -273,12 +273,12 @@ app.get('/library', isAuthenticated, (req, res) => {
   });
 
   promise1.then(waterfall(songList.map((item) => {
-    return genius.song(value).then(function(response) {
+    return genius.song(item).then(function(response) {
       let libItemToPush = {
         songName: response.song.title,
         singer: response.song.primary_artist.name,
         image: response.song.song_art_image_url,
-        id: value
+        id: item
       }
       libItems.push(libItemToPush);
     });
