@@ -300,8 +300,7 @@ app.get('/library', isAuthenticated, (req, res) => {
           id: value
         }
         libItems.push(libItemToPush);
-        console.log(libItems+'1');
-        return libItems;
+        if (libItems.length === songList.length) return libItems;
       });
       console.log(libItems+'2');
     }
