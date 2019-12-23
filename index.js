@@ -222,7 +222,7 @@ app.get('/song/:id', (req, res) => {
       if (!req.session.passport) {
         state = 'Non loged in';
       } else if (req.session.passport.user) {
-        addSong(req.session.passport.user, req.params.id);
+        addSong(req.session.passport.user, data);
         state = 'Song lyrics were added';
       }
       console.log(state);
@@ -267,22 +267,22 @@ app.get('/song/:id', (req, res) => {
   });
 });
 
-app.post('/song/:id', (req, res) => {
-  if (!req.session.passport) {
-    res.redirect('/login');
-  } else if (req.session.passport.user) {
-    addSong(req.session.passport.user, req.params.id);
-    res.redirect('/');
-  }
-});
-
-// app.post('/song', (req, res) => {
+// app.post('/song/:id', (req, res) => {
 //   if (!req.session.passport) {
 //     res.redirect('/login');
-//   } else {
-//     res.redirect('/library');
+//   } else if (req.session.passport.user) {
+//     addSong(req.session.passport.user, req.params.id);
+//     res.redirect('/');
 //   }
 // });
+//
+// // app.post('/song', (req, res) => {
+// //   if (!req.session.passport) {
+// //     res.redirect('/login');
+// //   } else {
+// //     res.redirect('/library');
+// //   }
+// // });
 
 app.get('/library', isAuthenticated, (req, res) => {
   getSongList(req.session.passport.user);
