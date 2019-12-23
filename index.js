@@ -190,7 +190,6 @@ app.get('/', (req, res) => {
         addSong(req.session.passport.user, data);
         state = 'Song lyrics were added';
       }
-      console.log(state);
       client.emit('addSong', state);
     }, 3002);
   });
@@ -222,10 +221,9 @@ app.get('/song/:id', (req, res) => {
       if (!req.session.passport) {
         state = 'Non loged in';
       } else if (req.session.passport.user) {
-        addSong(req.session.passport.user, req.params.id);
+        addSong(req.session.passport.user, Number(req.params.id));
         state = 'Song lyrics were added';
       }
-      console.log(state);
       client.emit('addSong', state);
     }, 3002);
   });
