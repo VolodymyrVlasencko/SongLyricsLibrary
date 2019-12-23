@@ -300,7 +300,7 @@ app.get('/library', isAuthenticated, (req, res) => {
       });
     });
   }
-  getLibItemList();
+  getLibItemList(libItems, songList);
   res.render('index_lib', { libItems: libItems });
 });
 
