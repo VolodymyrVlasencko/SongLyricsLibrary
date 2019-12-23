@@ -296,10 +296,9 @@ app.get('/library', isAuthenticated, (req, res) => {
         id: item
       }
       libItems.push(libItemToPush)
+      res.render('index_lib', { libItems: libItems })
     });
-    console.log(libItems);
   });
-  res.render('index_lib', { libItems: libItems })
 });
 
 
