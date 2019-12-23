@@ -288,20 +288,21 @@ app.get('/library', isAuthenticated, (req, res) => {
   getSongList(req.session.passport.user);
   let libItems = [];
 
-  songList.forEach(item => {
-    genius.song(item).then(function(response) {
+  for (let values of Object.values(songList)) {
+    if (value === null) continue;
+    genius.song(value).then(function(response) {
       let libItemToPush = {
         songName: response.song.title,
         singer: response.song.primary_artist.name,
         image: response.song.song_art_image_url,
-        id: item
+        id: value
       }
       libItems.push(libItemToPush);
       if (libItems.length === songList.length) {
         res.render('index_lib', { libItems: libItems })
       }
     });
-  });
+  }
 });
 
 
