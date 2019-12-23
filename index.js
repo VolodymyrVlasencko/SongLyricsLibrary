@@ -285,9 +285,10 @@ app.get('/song/:id', (req, res) => {
 
 app.get('/library', isAuthenticated, (req, res) => {
 
-getSongList(req.session.passport.user);
+  getSongList(req.session.passport.user);
 
-function getLibItems(songList) {
+
+  setTimeout(() => {
   let libItems = [];
   for (let value of Object.values(songList)) {
     genius.song(value).then(function(response) {
@@ -303,8 +304,9 @@ function getLibItems(songList) {
       }
     });
   }
-}
-setTimeout(getLibItems(), 1000);
+
+
+  }, 1000);
 });
 
 
