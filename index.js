@@ -292,7 +292,7 @@ app.get('/library', isAuthenticated, (req, res) => {
 
   promise1.then(() => {
     for (let value of Object.values(songList)) {
-    genius.song(value).then(function(response) {
+    return genius.song(value).then(function(response) {
       let libItemToPush = {
         songName: response.song.title,
         singer: response.song.primary_artist.name,
@@ -300,10 +300,9 @@ app.get('/library', isAuthenticated, (req, res) => {
         id: value
       }
       libItems.push(libItemToPush);
-      return libItems
+      return libItems;
     });
   }
-
   res.render('index_lib', { libItems: libItems })
 });
 });
