@@ -32,42 +32,16 @@
       </ul>
     </div>
     <div id="container">
+      <% for (let key of Object.keys(libItems)) { %>
       <div id="libItem">
         <span onclick="deleteItem()" class="delete"></span>
-        <p id="songName">Song name</p>
-        <p id="singer">Singer</p>
-        <img src="https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2F5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg" alt="cover">
+        <a href="/song/<%= libItems[key].id %>">
+          <p id="songName"><%= libItems[key].songName %></p>
+          <p id="singer"><%= libItems[key].singer %></p>
+          <img src="<%= libItems[key].image %>" alt="cover">
+        </a>
       </div>
-      <div id="libItem">
-        <span onclick="deleteItem()" class="delete"></span>
-        <p id="songName">Song name</p>
-        <p id="singer">Singer</p>
-        <img src="https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2F5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg" alt="cover">
-      </div>
-      <div id="libItem">
-        <span onclick="deleteItem()" class="delete"></span>
-        <p id="songName">Song name</p>
-        <p id="singer">Singer</p>
-        <img src="https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2F5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg" alt="cover">
-      </div>
-      <div id="libItem">
-        <span onclick="deleteItem()" class="delete"></span>
-        <p id="songName">Song name</p>
-        <p id="singer">Singer</p>
-        <img src="https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2F5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg" alt="cover">
-      </div>
-      <div id="libItem">
-        <span onclick="deleteItem()" class="delete"></span>
-        <p id="songName">Song name</p>
-        <p id="singer">Singer</p>
-        <img src="https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2F5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg" alt="cover">
-      </div>
-      <div id="libItem">
-        <span onclick="deleteItem()" class="delete"></span>
-        <p id="songName">Song name</p>
-        <p id="singer">Singer</p>
-        <img src="https://t2.genius.com/unsafe/220x220/https%3A%2F%2Fimages.genius.com%2F5bcfb76690b3fb068a317c76579b70b5.1000x1000x1.jpg" alt="cover">
-      </div>
+      <% } %>
     </div>
   </body>
 </html>
