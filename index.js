@@ -285,6 +285,7 @@ app.get('/song/:id', (req, res) => {
 app.get('/library', isAuthenticated, (req, res) => {
   let libItems = [];
   getSongList(req.session.passport.user);
+  console.log(songList);
   songList.forEach(item => {
     genius.song(item).then(function(response) {
       let libItemToPush = {
