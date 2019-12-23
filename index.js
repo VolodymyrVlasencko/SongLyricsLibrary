@@ -285,51 +285,27 @@ app.get('/song/:id', (req, res) => {
 
 app.get('/library', isAuthenticated, (req, res) => {
   let libItems = [];
-  waterfall([
-    (callback) => {
-      callback(null, getSongList(req.session.passport.user));
-    },
-    (getSongList(req.session.passport.user), callback) => {
-      callback(null, songList);
-    },
-    (songList, callback) => {
-      callback(null, (songList) => {
-        for (let values of Object.values(songList)) {
-          genius.song(item).then(function(response) {
-            let libItemToPush = {
-              songName: response.song.title,
-              singer: response.song.primary_artist.name,
-              image: response.song.song_art_image_url,
-              id: item
-            }
-            libItems.push(libItemToPush);
-            return libItems
-          });
-        }
-      });
-    }
-  ], (err, res) => {
-    if (err) throw err;
-    if (res) {
-      res.render('index_lib', { libItems: libItems });
-    }
+
+  let promise1 = new Promise((res, rej) => {
+    res(getSongList(req.session.passport.user))
   });
-  // getSongList(req.session.passport.user);
-  //
-  // for (let value of Object.values(songList)) {
-  //   genius.song(value).then(function(response) {
-  //     let libItemToPush = {
-  //       songName: response.song.title,
-  //       singer: response.song.primary_artist.name,
-  //       image: response.song.song_art_image_url,
-  //       id: value
-  //     }
-  //     libItems.push(libItemToPush);
-  //     return libItems
-  //   });
-  // }
-  //
-  // res.render('index_lib', { libItems: libItems });
+
+  promise1.then(() => {
+    for (let value of Object.values(songList)) {
+    genius.song(value).then(function(response) {
+      let libItemToPush = {
+        songName: response.song.title,
+        singer: response.song.primary_artist.name,
+        image: response.song.song_art_image_url,
+        id: value
+      }
+      libItems.push(libItemToPush);
+      return libItems
+    });
+  }
+
+  res.render('index_lib', { libItems: libItems })
+});
 });
 
 
