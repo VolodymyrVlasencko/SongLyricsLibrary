@@ -14,7 +14,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('connect-flash');
 const bcrypt = require('bcryptjs');
-const waterfall = require('async-waterfall');
+// const waterfall = require('async-waterfall');
 require('dotenv').config();
 
 const user_schema = require('./features/database/user_schema.js');
@@ -287,24 +287,27 @@ app.get('/library', isAuthenticated, (req, res) => {
   let libItems = [];
 
   let promise1 = new Promise((res, rej) => {
-    res(getSongList(req.session.passport.user))
+    res(getSongList(req.session.passport.user));
   });
 
   promise1.then(() => {
     for (let value of Object.values(songList)) {
-    return genius.song(value).then(function(response) {
-      let libItemToPush = {
-        songName: response.song.title,
-        singer: response.song.primary_artist.name,
-        image: response.song.song_art_image_url,
-        id: value
-      }
-      libItems.push(libItemToPush);
-      return libItems;
-    });
-  }
-  res.render('index_lib', { libItems: libItems })
-});
+      genius.song(value).then(function(response) {
+        let libItemToPush = {
+          songName: response.song.title,
+          singer: response.song.primary_artist.name,
+          image: response.song.song_art_image_url,
+          id: value
+        }
+        libItems.push(libItemToPush);
+        return libItems;
+        console.log(libItems+'1');
+      });
+      console.log(libItems+'2');
+    }
+    console.log(libItems+'3');
+    res.render('index_lib', { libItems: libItems })
+  });
 });
 
 
