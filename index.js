@@ -291,15 +291,18 @@ app.get('/library', isAuthenticated, (req, res) => {
   //
   //   });
   // });
-  const getlyrics = new Promise((res, rej) => {
-    getSongList(req.session.passport.user);
+  const getlyrics1 = new Promise((res, rej) => {
     res(getSongList(req.session.passport.user));
   });
+  const getlyrics2 = new Promise((res, rej) => {
+    res(getSongList(req.session.passport.user));
+  });
+  getlyrics1.then(res => getlyrics2.then(res => {console.log(res)}).catch(err => {throw err}));
   // getSongList(req.session.passport.user);
   // let libItems = [];
-  getlyrics
-  .then(res => {
-    console.log(res);
+  // getlyrics2
+  // .then(res => {
+  //   console.log(res);
   //   let libItems = songs.map(song => {
   //     if (song === null) {
   //       console.log('null');
@@ -323,10 +326,10 @@ app.get('/library', isAuthenticated, (req, res) => {
   // })
   // .then(res => {
   //   res.render('index_lib', { libItems: libItems });
-  })
-  .catch(err => {
-    throw err
-  });
+  // })
+  // .catch(err => {
+  //   throw err
+  // });
 
 
   // songList.forEach(item => {
