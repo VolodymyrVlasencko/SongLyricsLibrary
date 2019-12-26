@@ -292,6 +292,7 @@ app.get('/library', isAuthenticated, (req, res) => {
         image: response.song.song_art_image_url,
         id: item
       }
+      console.log(libItemToPush);
       libItems.push(libItemToPush);
       if (libItems.length === songList.length) {
         console.log(libItems);
