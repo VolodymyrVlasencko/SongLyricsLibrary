@@ -291,19 +291,14 @@ app.get('/library', isAuthenticated, (req, res) => {
   //
   //   });
   // });
-  const getlyrics1 = new Promise((res, rej) => {
-    res(getSongList(req.session.passport.user));
+  const getlyrics1 = Promise.resolve(getSongList(req.session.passport.user));
+  const getlyrics2 = new Promise((resolve, reject) => {
+    setTimeout(()=> {
+      resolve(getSongList(req.session.passport.user));
+    }, 500);
   });
-  const getlyrics2 = new Promise((res, rej) => {
-    res(getSongList(req.session.passport.user));
-  });
-  getlyrics1
-    .then(res => getlyrics2
-      .then(res => {
-        console.log(res);
-        res.render('index_lib');
-      })
-      .catch(err => {throw err}));
+  Promise.race([getlyrics1, getlyrics2]).then(resolve => { console.log(resolve);})
+
   // getSongList(req.session.passport.user);
   // let libItems = [];
   // getlyrics2
