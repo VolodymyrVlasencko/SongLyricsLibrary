@@ -281,9 +281,9 @@ app.get('/library', isAuthenticated, (req, res) => {
   let libItems = [];
 
 
-  songList.forEach(item => {
+  for (let item of songList) {
     if (item === null) {
-      console.log('null');
+      libItems.push(null);
     } else {
     genius.song(item).then(function(response) {
       let libItemToPush = {
