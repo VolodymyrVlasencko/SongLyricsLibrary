@@ -293,6 +293,7 @@ app.get('/library', isAuthenticated, (req, res) => {
   // });
   const getlyrics = new Promise((res, rej) => {
     getSongList(req.session.passport.user);
+    getSongList(req.session.passport.user);
     console.log(songList);
     res(songList);
   });
