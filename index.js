@@ -300,7 +300,7 @@ app.get('/library', isAuthenticated, (req, res) => {
       }
     });
     }
-  });
+  }
 });
 
 
