@@ -271,6 +271,7 @@ app.get('/library', isAuthenticated, (req, res) => {
 
   io.on('connection', client => {
     client.on('delete', data => {
+      console.log(data);
       deleteSong(req.session.passport.user, data);
       client.emit('deleteSong', data);
     }, 3002);
