@@ -98,6 +98,7 @@
     font-size: 0.8em;
     background: #e6e6e4; }
   .Item .delete {
+    cursor: pointer;
     position: relative;
     left: 235px;
     top: 7px;
