@@ -9,8 +9,8 @@ module.exports = function getSongList(userId) {
   Listener.findById(userId, (err, res) => {
     if (err) throw err;
     if (res) {
-      songList = res.myLyrics;
-      return next(songList)
+      return songList = res.myLyrics;
     }
+    return next()
   });
 }
