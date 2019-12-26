@@ -96,7 +96,7 @@
     padding-left: 10px;
     font-size: 0.8em;
     background: #e6e6e4; }
-  .Item a .libItem .delete {
+  .Item .delete {
     position: relative;
     left: 235px;
     top: 7px;
