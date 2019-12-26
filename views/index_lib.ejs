@@ -20,7 +20,6 @@
       socket.on('deleteSong', data => {
         var libItem = document.getElementById(`libItem${data}`);
         libItem.parentNode.removeChild(`libItem${data}`);
-        // return false;
       });
 
     </script>
@@ -35,14 +34,14 @@
     <div id="container">
       <% for (let key of Object.keys(libItems)) {
         if (libItems[key] === null) continue; %>
-      <div class="libItem" id="libItem<%= libItems[key].id %>">
-        <span onclick="deleteItem(libItems[key].id)" class="delete"></span>
         <a href="/song/<%= libItems[key].id %>">
-          <p id="songName"><%= libItems[key].songName %></p>
-          <p id="singer"><%= libItems[key].singer %></p>
-          <img src="<%= libItems[key].image %>" alt="cover">
+          <div class="libItem" id="libItem<%= libItems[key].id %>">
+            <span onclick="deleteItem(<%= libItems[key].id %>)" class="delete"></span>
+              <p id="songName"><%= libItems[key].songName %></p>
+              <p id="singer"><%= libItems[key].singer %></p>
+              <img src="<%= libItems[key].image %>" alt="cover">
+          </div>
         </a>
-      </div>
       <% } %>
     </div>
   </body>
