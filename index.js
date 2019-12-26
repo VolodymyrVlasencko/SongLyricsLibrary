@@ -138,7 +138,9 @@ passport.use('signup', new LocalStrategy({
 
 const isAuthenticated = (req, res, next) => {
   if (!req.session.passport) { res.redirect('/login'); }
-  else if (req.session.passport.user) { return next(); }
+  else if (req.session.passport.user) {
+    getSongList(req.session.passport.user);
+    return next(); }
 }
 
 const deleteSession = (req, res, next) => {
@@ -266,23 +268,6 @@ app.get('/song/:id', (req, res) => {
   });
 });
 
-// app.post('/song/:id', (req, res) => {
-//   if (!req.session.passport) {
-//     res.redirect('/login');
-//   } else if (req.session.passport.user) {
-//     addSong(req.session.passport.user, req.params.id);
-//     res.redirect('/');
-//   }
-// });
-//
-// // app.post('/song', (req, res) => {
-// //   if (!req.session.passport) {
-// //     res.redirect('/login');
-// //   } else {
-// //     res.redirect('/library');
-// //   }
-// // });
-
 app.get('/library', isAuthenticated, (req, res) => {
   // io.on('connection', client => {
   //
@@ -291,66 +276,29 @@ app.get('/library', isAuthenticated, (req, res) => {
   //
   //   });
   // });
-  const getlyrics1 = Promise.resolve(getSongList(req.session.passport.user));
-  const getlyrics2 = new Promise((resolve, reject) => {
-    setTimeout(()=> {
-      resolve(getSongList(req.session.passport.user));
-    }, 500);
+
+  getSongList(req.session.passport.user);
+  let libItems = [];
+
+
+  songList.forEach(item => {
+    if (item === null) {
+      console.log('null');
+    } else {
+    genius.song(item).then(function(response) {
+      let libItemToPush = {
+        songName: response.song.title,
+        singer: response.song.primary_artist.name,
+        image: response.song.song_art_image_url,
+        id: item
+      }
+      libItems.push(libItemToPush);
+      if (libItems.length === songList.length) {
+        res.render('index_lib', { libItems: libItems })
+      }
+    });
+    }
   });
-  Promise.race([getlyrics1, getlyrics2]).then(resolve => { console.log(resolve);})
-
-  // getSongList(req.session.passport.user);
-  // let libItems = [];
-  // getlyrics2
-  // .then(res => {
-  //   console.log(res);
-  //   let libItems = songs.map(song => {
-  //     if (song === null) {
-  //       console.log('null');
-  //       return {
-  //         songName: null,
-  //         singer: null,
-  //         image: null,
-  //         id: 0
-  //       }
-  //     } else {
-  //     genius.song(song).then(function(response) {
-  //       return {
-  //         songName: response.song.title,
-  //         singer: response.song.primary_artist.name,
-  //         image: response.song.song_art_image_url,
-  //         id: song
-  //       }
-  //     });
-  //     }
-  //   })
-  // })
-  // .then(res => {
-  //   res.render('index_lib', { libItems: libItems });
-  // })
-  // .catch(err => {
-  //   throw err
-  // });
-
-
-  // songList.forEach(item => {
-  //   if (item === null) {
-  //     console.log('null');
-  //   } else {
-  //   genius.song(item).then(function(response) {
-  //     let libItemToPush = {
-  //       songName: response.song.title,
-  //       singer: response.song.primary_artist.name,
-  //       image: response.song.song_art_image_url,
-  //       id: item
-  //     }
-  //     libItems.push(libItemToPush);
-  //     if (libItems.length === songList.length) {
-  //       res.render('index_lib', { libItems: libItems })
-  //     }
-  //   });
-  //   }
-  // });
 });
 
 
