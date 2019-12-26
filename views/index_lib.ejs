@@ -19,7 +19,7 @@
 
       socket.on('deleteSong', data => {
         var libItem = document.getElementById(`libItem${data}`);
-        libItem.parentNode.removeChild(`libItem${data}`);
+        libItem.remove(`libItem${data}`);
       });
 
     </script>
