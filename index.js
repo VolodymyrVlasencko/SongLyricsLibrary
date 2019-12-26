@@ -294,6 +294,7 @@ app.get('/library', isAuthenticated, (req, res) => {
   const getlyrics = new Promise((resolve, reject) => {
     let songs = getSongList(req.session.passport.user);
     resolve(songs);
+    return songs
   });
   // getSongList(req.session.passport.user);
   // let libItems = [];
