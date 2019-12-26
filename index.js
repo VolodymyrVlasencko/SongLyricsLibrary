@@ -297,7 +297,13 @@ app.get('/library', isAuthenticated, (req, res) => {
   const getlyrics2 = new Promise((res, rej) => {
     res(getSongList(req.session.passport.user));
   });
-  getlyrics1.then(res => getlyrics2.then(res => {console.log(res)}).catch(err => {throw err}));
+  getlyrics1
+    .then(res => getlyrics2
+      .then(res => {
+        console.log(res);
+        res.render('index_lib');
+      })
+      .catch(err => {throw err}));
   // getSongList(req.session.passport.user);
   // let libItems = [];
   // getlyrics2
