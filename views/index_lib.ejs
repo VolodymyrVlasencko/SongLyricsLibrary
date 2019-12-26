@@ -34,7 +34,7 @@
     <div id="container">
       <% for (let key of Object.keys(libItems)) {
         if (libItems[key] === null) continue; %>
-        <div  id="libItem<%= libItems[key].id %>">
+        <div class="Item" id="libItem<%= libItems[key].id %>">
           <span onclick="deleteItem(<%= libItems[key].id %>)" class="delete"></span>
           <a href="/song/<%= libItems[key].id %>">
             <div class="libItem">

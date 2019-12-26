@@ -59,19 +59,19 @@
   top: 160px;
   width: 1000px; }
 
-a {
+.Item a {
   outline: none;
   text-decoration: none; }
-a:link {
+.Item a:link {
   color: #6c8a9b; }
-a:visited {
+.Item a:visited {
   color: #6c8a9b; }
-a:hover {
+.Item a:hover {
   color: #6c8a9b; }
-a:active {
+.Item a:active {
   color: #6c8a9b; }
 
-a .libItem {
+.Item a .libItem {
   overflow: hidden;
   display: inline-block;
   width: 270px;
@@ -81,22 +81,22 @@ a .libItem {
   margin-right: 40px;
   margin-bottom: 38px;
   cursor: pointer; }
-  a .libItem img {
+  .Item a .libItem img {
     width: 80px;
     height: 80px;
     position: relative;
     left: 166px;
     top: -60px; }
-  a .libItem #songName {
+  .Item a .libItem #songName {
     padding-top: 50px;
     padding-left: 10px;
     font-size: 1em;
     background: #e6e6e4; }
-  a .libItem #singer {
+  .Item a .libItem #singer {
     padding-left: 10px;
     font-size: 0.8em;
     background: #e6e6e4; }
-  a .libItem .delete {
+  .Item a .libItem .delete {
     position: relative;
     left: 235px;
     top: 7px;
@@ -120,11 +120,11 @@ a .libItem {
     transform: rotate(-45deg);
     }
 
-a .libItem:hover {
+.Item a .libItem:hover {
   background: #DDDDDB; }
-  a .libItem:hover #songName {
+  .Item a .libItem:hover #songName {
     background: #DDDDDB; }
-  a .libItem:hover #singer {
+  .Item a .libItem:hover #singer {
     background: #DDDDDB; }
-  a .libItem:hover #album {
+  .Item a .libItem:hover #album {
     background: #DDDDDB; }
