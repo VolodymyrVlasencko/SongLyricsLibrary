@@ -300,30 +300,30 @@ app.get('/library', isAuthenticated, (req, res) => {
   // let libItems = [];
   getlyrics
   .then(res => {
-    console.log(songs);
-    let libItems = songs.map(song => {
-      if (song === null) {
-        console.log('null');
-        return {
-          songName: null,
-          singer: null,
-          image: null,
-          id: 0
-        }
-      } else {
-      genius.song(song).then(function(response) {
-        return {
-          songName: response.song.title,
-          singer: response.song.primary_artist.name,
-          image: response.song.song_art_image_url,
-          id: song
-        }
-      });
-      }
-    })
-  })
-  .then(res => {
-    res.render('index_lib', { libItems: libItems });
+    console.log(res);
+  //   let libItems = songs.map(song => {
+  //     if (song === null) {
+  //       console.log('null');
+  //       return {
+  //         songName: null,
+  //         singer: null,
+  //         image: null,
+  //         id: 0
+  //       }
+  //     } else {
+  //     genius.song(song).then(function(response) {
+  //       return {
+  //         songName: response.song.title,
+  //         singer: response.song.primary_artist.name,
+  //         image: response.song.song_art_image_url,
+  //         id: song
+  //       }
+  //     });
+  //     }
+  //   })
+  // })
+  // .then(res => {
+  //   res.render('index_lib', { libItems: libItems });
   })
   .catch(err => {
     throw err
