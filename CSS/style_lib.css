@@ -59,7 +59,7 @@
   top: 160px;
   width: 1000px; }
 
-#libItem {
+.libItem {
   overflow: hidden;
   display: inline-block;
   width: 270px;
@@ -69,22 +69,33 @@
   margin-right: 40px;
   margin-bottom: 38px;
   cursor: pointer; }
-  #libItem img {
+  .libItem img {
     width: 80px;
     height: 80px;
     position: relative;
     left: 166px;
     top: -65px; }
-  #libItem #songName {
+  .libItem a {
+    outline: none;
+    text-decoration: none; }
+  .libItem a:link {
+    color: #6c8a9b; }
+  .libItem a:visited {
+    color: #6c8a9b; }
+  .libItem a:hover {
+    color: #6c8a9b; }
+  .libItem a:active {
+    color: #6c8a9b; }
+  .libItem #songName {
     padding-top: 35px;
     padding-left: 10px;
-    font-size: 1.6em;
+    font-size: 1em;
     background: #e6e6e4; }
-  #libItem #singer {
+  .libItem #singer {
     padding-left: 10px;
-    font-size: 1.3em;
+    font-size: 0.8em;
     background: #e6e6e4; }
-  #libItem .delete {
+  .libItem .delete {
     position: relative;
     left: 235px;
     top: 7px;
@@ -108,11 +119,11 @@
     transform: rotate(-45deg);
     }
 
-#libItem:hover {
+.libItem:hover {
   background: #DDDDDB; }
-  #libItem:hover #songName {
+  .libItem:hover #songName {
     background: #DDDDDB; }
-  #libItem:hover #singer {
+  .libItem:hover #singer {
     background: #DDDDDB; }
-  #libItem:hover #album {
+  .libItem:hover #album {
     background: #DDDDDB; }

@@ -13,15 +13,16 @@
     <script>
       var socket = io.connect();
 
-      function deleteItem(){
-        socket.emit('deleted');
+      function deleteLyrics(songId) {
+        socket.emit('delete', songId);
       }
 
-      socket.on('clicked', data => {
-        var libItem = document.getElementById('libItem');
-        libItem.parentNode.removeChild(libItem);
-        return false;
+      socket.on('deleteSong', data => {
+        var libItem = document.getElementById(`libItem${data}`);
+        libItem.parentNode.removeChild(`libItem${data}`);
+        // return false;
       });
+
     </script>
     <a href="/signout" id="signout">Sign Out</a>
     <div id="sidebar">
@@ -34,8 +35,8 @@
     <div id="container">
       <% for (let key of Object.keys(libItems)) {
         if (libItems[key] === null) continue; %>
-      <div id="libItem">
-        <span onclick="deleteItem()" class="delete"></span>
+      <div class="libItem" id="libItem<%= libItems[key].id %>">
+        <span onclick="deleteItem(libItems[key].id)" class="delete"></span>
         <a href="/song/<%= libItems[key].id %>">
           <p id="songName"><%= libItems[key].songName %></p>
           <p id="singer"><%= libItems[key].singer %></p>

@@ -139,7 +139,6 @@ passport.use('signup', new LocalStrategy({
 const isAuthenticated = (req, res, next) => {
   if (!req.session.passport) { res.redirect('/login'); }
   else if (req.session.passport.user) {
-    getSongList(req.session.passport.user);
     return next(); }
 }
 
@@ -269,13 +268,13 @@ app.get('/song/:id', (req, res) => {
 });
 
 app.get('/library', isAuthenticated, (req, res) => {
-  // io.on('connection', client => {
-  //
-  //   let libItems = [];
-  //   client.on('delete', data => {
-  //
-  //   });
-  // });
+
+  io.on('connection', client => {
+    client.on('delete', data => {
+      deleteSong(req.session.passport.user, data);
+      client.emit('deleteSong', data);
+    }, 3002);
+  });
 
   getSongList(req.session.passport.user);
   let libItems = [];
