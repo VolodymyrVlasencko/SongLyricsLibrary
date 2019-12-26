@@ -294,6 +294,7 @@ app.get('/library', isAuthenticated, (req, res) => {
       }
       libItems.push(libItemToPush);
       if (libItems.length === songList.length) {
+        console.log(libItems);
         res.render('index_lib', { libItems: libItems })
       }
     });
