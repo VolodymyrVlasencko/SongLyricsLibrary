@@ -284,28 +284,69 @@ app.get('/song/:id', (req, res) => {
 // // });
 
 app.get('/library', isAuthenticated, (req, res) => {
-
-  getSongList(req.session.passport.user);
-  let libItems = [];
-
-  songList.forEach(item => {
-    if (item === null) {
-      console.log('null');
-    } else {
-    genius.song(item).then(function(response) {
-      let libItemToPush = {
-        songName: response.song.title,
-        singer: response.song.primary_artist.name,
-        image: response.song.song_art_image_url,
-        id: item
-      }
-      libItems.push(libItemToPush);
-      if (libItems.length === songList.length) {
-        res.render('index_lib', { libItems: libItems })
-      }
-    });
-    }
+  // io.on('connection', client => {
+  //
+  //   let libItems = [];
+  //   client.on('delete', data => {
+  //
+  //   });
+  // });
+  const getlyrics = new Promise((resolve, reject) => {
+    let songs = getSongList(req.session.passport.user);
+    resolve(songs);
   });
+  // getSongList(req.session.passport.user);
+  // let libItems = [];
+  getlyrics
+  .then(res => {
+    console.log(songs);
+    let libItems = songs.map(song => {
+      if (song === null) {
+        console.log('null');
+        return {
+          songName: null,
+          singer: null,
+          image: null,
+          id: 0
+        }
+      } else {
+      genius.song(song).then(function(response) {
+        return {
+          songName: response.song.title,
+          singer: response.song.primary_artist.name,
+          image: response.song.song_art_image_url,
+          id: song
+        }
+      });
+      }
+    })
+  })
+  .then(res => {
+    res.render('index_lib', { libItems: libItems });
+  })
+  .catch(err => {
+    throw err
+  });
+
+
+  // songList.forEach(item => {
+  //   if (item === null) {
+  //     console.log('null');
+  //   } else {
+  //   genius.song(item).then(function(response) {
+  //     let libItemToPush = {
+  //       songName: response.song.title,
+  //       singer: response.song.primary_artist.name,
+  //       image: response.song.song_art_image_url,
+  //       id: item
+  //     }
+  //     libItems.push(libItemToPush);
+  //     if (libItems.length === songList.length) {
+  //       res.render('index_lib', { libItems: libItems })
+  //     }
+  //   });
+  //   }
+  // });
 });
 
 
