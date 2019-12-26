@@ -34,14 +34,16 @@
     <div id="container">
       <% for (let key of Object.keys(libItems)) {
         if (libItems[key] === null) continue; %>
-        <a href="/song/<%= libItems[key].id %>">
-          <div class="libItem" id="libItem<%= libItems[key].id %>">
-            <span onclick="deleteItem(<%= libItems[key].id %>)" class="delete"></span>
+        <div  id="libItem<%= libItems[key].id %>">
+          <span onclick="deleteItem(<%= libItems[key].id %>)" class="delete"></span>
+          <a href="/song/<%= libItems[key].id %>">
+            <div class="libItem">
               <p id="songName"><%= libItems[key].songName %></p>
               <p id="singer"><%= libItems[key].singer %></p>
               <img src="<%= libItems[key].image %>" alt="cover">
-          </div>
-        </a>
+            </div>
+          </a>
+        </div>
       <% } %>
     </div>
   </body>
