@@ -59,6 +59,8 @@
   top: 160px;
   width: 1000px; }
 
+.Item {
+  display: inline-block; }
 .Item a {
   outline: none;
   text-decoration: none; }
@@ -70,7 +72,6 @@
   color: #6c8a9b; }
 .Item a:active {
   color: #6c8a9b; }
-
 .Item a .libItem {
   overflow: hidden;
   display: inline-block;
