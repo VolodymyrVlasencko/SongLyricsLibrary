@@ -33,6 +33,7 @@
     </div>
     <div id="container">
       <% for (let key of Object.keys(libItems)) {
+        if (libItems.length === 1 && libItems[key] === null) break;
         if (libItems[key] === null) continue; %>
         <div class="Item" id="libItem<%= libItems[key].id %>">
           <span onclick="deleteSong(<%= libItems[key].id %>)" class="delete"></span>

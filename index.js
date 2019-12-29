@@ -114,7 +114,7 @@ passport.use('signup', new LocalStrategy({
 
           newListener.username = username;
           newListener.password = createHash(password);
-          newListener.myLyrics.push(null)
+          newListener.myLyrics.push(2894762)
 
           newListener.save(function(err) {
             if (err){
