@@ -1,12 +1,10 @@
 const express = require('express');
-// const http = require('http');
 const path = require('path');
 const request = require('request');
 const bodyParser = require('body-parser');
 const ejs = require('ejs');
 const api = require('genius-api');
 const session = require('express-session');
-// const WebSocket = require('ws');
 const MongoStore = require('connect-mongo')(session);
 const mongoose = require('mongoose');
 const cheerio = require('cheerio');
@@ -14,15 +12,12 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const flash = require('connect-flash');
 const bcrypt = require('bcryptjs');
-// const waterfall = require('async-waterfall');
 require('dotenv').config();
 
 const user_schema = require('./features/database/user_schema.js');
 const getSongList = require('./features/database/get_song_list.js');
 const addSong = require('./features/database/add_song.js');
 const deleteSong = require('./features/database/delete_song.js');
-// const port = 5000;
-// const server = new WebSocket.Server({ port });
 
 const app = express();
 
@@ -151,9 +146,6 @@ const deleteSession = (req, res, next) => {
 app.use((req, res, next) => {
   req.session.numberOfVisits = req.session.numberOfVisits + 1 || 1;
 
-  // getUsernameCookie(req.body.username);
-  // req.session.username = req.body.username || 'guest';
-
   console.log(req.session);
   next();
 });
@@ -163,23 +155,9 @@ app.set('view engine', 'ejs');
 
 const genius = new api(process.env.GENIUS_ACCESS_TOKEN);
 
-// server.on("connection", ws => {
-//   console.log('user connected');
-//   // ws.send(__dirname + 'index_main.ejs');
-//
-// });
-
 const http = require('http').createServer(app)
 const io = require('socket.io')(server);
 
-
-// io.on('connection', client => {
-//   console.log('connected');
-//   client.emit('buttonUpdate');
-//   client.on('clicked', data => {
-//   }, 3002);
-// });
-// });
 
 app.get('/', (req, res) => {
 
@@ -276,7 +254,6 @@ app.get('/library', isAuthenticated, (req, res) => {
     }, 3002);
   });
 
-  getSongList(req.session.passport.user);
   getSongList(req.session.passport.user);
   let libItems = [];
 
