@@ -32,20 +32,41 @@
       </ul>
     </div>
     <div id="container">
-      <% for (let key of Object.keys(libItems)) {
-        if (libItems.length = 1 && libItems[key] == null) break;
-        if (libItems[key] === null) continue; %>
-        <div class="Item" id="libItem<%= libItems[key].id %>">
-          <span onclick="deleteSong(<%= libItems[key].id %>)" class="delete"></span>
-          <a href="/song/<%= libItems[key].id %>">
-            <div class="libItem">
-              <p id="songName"><%= libItems[key].songName %></p>
-              <p id="singer"><%= libItems[key].singer %></p>
-              <img src="<%= libItems[key].image %>" alt="cover">
-            </div>
-          </a>
-        </div>
-      <% } %>
+      <% if (libItems.length = 1) {
+        for (let item of libItems) {
+          if (item === null) {
+            break;
+          } else {
+            for (let key of Object.keys(libItems)) {
+              if (libItems[key] === null) continue; %>
+                <div class="Item" id="libItem<%= libItems[key].id %>">
+                  <span onclick="deleteSong(<%= libItems[key].id %>)" class="delete"></span>
+                  <a href="/song/<%= libItems[key].id %>">
+                    <div class="libItem">
+                      <p id="songName"><%= libItems[key].songName %></p>
+                      <p id="singer"><%= libItems[key].singer %></p>
+                      <img src="<%= libItems[key].image %>" alt="cover">
+                    </div>
+                  </a>
+                </div>
+              <% }
+              }
+            }
+          } else {
+            for (let key of Object.keys(libItems)) {
+              if (libItems[key] === null) continue; %>
+                <div class="Item" id="libItem<%= libItems[key].id %>">
+                  <span onclick="deleteSong(<%= libItems[key].id %>)" class="delete"></span>
+                  <a href="/song/<%= libItems[key].id %>">
+                    <div class="libItem">
+                      <p id="songName"><%= libItems[key].songName %></p>
+                      <p id="singer"><%= libItems[key].singer %></p>
+                      <img src="<%= libItems[key].image %>" alt="cover">
+                    </div>
+                  </a>
+                </div>
+              <% } 
+            } %>
     </div>
   </body>
 </html>
