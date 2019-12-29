@@ -2,8 +2,5 @@ SCSS/
 html/
 node_modules/
 .env
-test.js
-config.json
-scripts/
 prepros-6.config
 public/
