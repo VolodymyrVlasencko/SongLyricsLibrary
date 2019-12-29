@@ -11,6 +11,5 @@ module.exports = function getSongList(userId) {
     if (res) {
       return songList = res.myLyrics;
     }
-    return next()
   });
 }
