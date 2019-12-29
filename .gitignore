@@ -1,6 +1,4 @@
-SCSS/
-html/
 node_modules/
 .env
 prepros-6.config
-public/
+public/css/

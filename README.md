@@ -2,7 +2,8 @@
 Web app based on GeniusAPI.
 It provides searching for lyrics by artist name or song name and add it to favorite library. It would help to access song lyrics without using search.
 Working example: http://lyricsviewer.herokuapp.com/
-Used:
+
+#Used:
 - Socket.io as websocket
 - MongoDB for storing users information and their libraries
 - Heroku hosting
